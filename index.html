@@ -166,22 +166,6 @@
             margin-top: -5px;
         }
 
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; }
-
-        .box { border: var(--border); padding: 20px; background: rgba(5, 5, 5, 0.8); }
-        .box h2 { 
-            font-size: 0.75rem; margin: -20px -20px 20px -20px; 
-            background: var(--fg); color: #000;
-            padding: 5px 10px;
-            text-transform: uppercase;
-            font-weight: 800;
-        }
-
-        .social-links a { color: var(--fg); font-size: 1.5rem; transition: transform 0.3s ease; }
-        .social-links a:hover { transform: scale(1.2); color: #ffffff; }
-
-        .full { grid-column: span 2; }
-
         .btn {
             background: none; border: 1px solid var(--fg); color: var(--fg);
             padding: 5px 15px; font-family: inherit; font-size: 0.7rem;
@@ -191,54 +175,16 @@
         }
         .btn:hover { background: var(--fg); color: #000; }
 
-        .img-content-box {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-        
-        footer { 
-            width: 100%; text-align: center; margin-top: 60px; 
-            font-size: 0.65rem; opacity: 0.3; letter-spacing: 5px;
-        }
-
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 15px;
-            width: 100%;
-        }
-
-        .work-item {
-            border: var(--border);
-            padding: 15px;
-            background: rgba(5, 5, 5, 0.8);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .work-img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border: 1px solid var(--dim);
-            margin-bottom: 10px;
-            background: #111;
-        }
-
-        .bestie-name {
-            font-size: 0.9rem;
-            font-weight: 800;
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; }
+        .box { border: var(--border); padding: 20px; background: rgba(5, 5, 5, 0.8); }
+        .box h2 { 
+            font-size: 0.75rem; margin: -20px -20px 20px -20px; 
+            background: var(--fg); color: #000;
+            padding: 5px 10px;
             text-transform: uppercase;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-            border-bottom: 1px solid var(--dim);
-            padding-bottom: 5px;
+            font-weight: 800;
         }
-
-        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } .full { grid-column: span 1; } .img-content-box { flex-direction: column; } }
+        .full { grid-column: span 2; }
     </style>
 </head>
 <body>
@@ -261,16 +207,6 @@
             </div>
             <div>
                 <span class="typewriter">CORV'S CORVETTE</span>
-                <p style="font-size: 0.65rem; color: var(--dim); margin: 5px 0 0 0; font-family: 'JetBrains Mono', monospace; font-style: italic; opacity: 0.8;">
-                    "2026.is.my.year."
-                </p>
-                <div class="social-links" style="margin-top: 10px;">
-                     <a href="https://discord.gg/73527jvJgv"><i class="fa-brands fa-discord"></i></a>
-                    <a href="https://x.com/corvxwtw"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="https://youtube.com/@corvxwtw"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="https:/twitch.tv/corvxwtw"><i class="fa-brands fa-twitch"></i></a>
-                    <a href="https:/tiktok.com/@c0rvx"><i class="fa-brands fa-tiktok"></i></a>
-                </div>
                 <p style="font-size: 0.7rem; color: var(--fg); margin-top: 12px;">
                     STATUS: <span style="color: #ffffff; text-shadow: 0 0 5px rgba(255,255,255,0.5);">ACTIVE</span> 
                 </p>
@@ -279,7 +215,7 @@
 
         <div class="music-player">
             <div class="marquee-container">
-                <div class="marquee-text" id="track-display">SYSTEM_AUDIO: 4X4.MP3 — BITRATE: 320KBPS — </div>
+                <div class="marquee-text" id="track-display">SYSTEM_AUDIO: LOADING... — </div>
             </div>
             <div class="controls-row">
                 <div style="display: flex; gap: 8px;">
@@ -299,90 +235,13 @@
         <div class="grid">
             <div class="box full">
                 <h2>>_About me</h2>
-                <p style="font-size: 0.8rem; line-height: 1.6;">Yo, I'm corvx. Welcome to my space. I'm a creator focused on gaming, music, and sports. I spend most of my time grinding Fortnite and keeping up with the latest in the underground music scene. I love interacting with my fans. Beyond the screen, I like hanging out with family and friends. I do watch a lot of football and basketball in my free time.</p>
-            </div>
-
-            <div class="box full">
-                <h2>>_SYSTEM_VISUAL</h2>
-                <div class="img-content-box">
-                    <div class="pfp-wrapper" style="width: 150px; height: 150px; flex-shrink: 0; box-shadow: var(--glow);">
-                        <img src="https://i.ibb.co/FLGHkQtW/mtz-pink.jpg" alt="visual_log" class="pfp">
-                    </div>
-                    <div>
-                        <p style="font-size: 0.8rem; line-height: 1.6; color: var(--fg); margin-bottom: 20px;">
-                            I own a part of Team Monster, I run the competitive Fortnite roster WITH @KEYZZILLA AND MTZ THEM SELF.
-                        </p>
-                        <a href="https://teammonster.org" target="_blank" style="text-decoration: none;">
-                            <button class="btn">[ ACCESS_MONSTER ]</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="box">
-                <h2>>HARDWARE_LOG</h2>
-                <p style="font-size: 0.7rem;">CPU: i9-13900k <br> GPU: RTX 3070 TI <br> RAM: 32GB DDR5</p>
+                <p style="font-size: 0.8rem; line-height: 1.6;">Yo, I'm corvx. Welcome to my space.</p>
             </div>
         </div>
-        <footer>[ v2.0 // MADE BY @KEYZZILLA AND ME OFC ]</footer>
-    </div>
-
-    <div id="work-page">
-        <div style="width: 100%; display: flex; justify-content: flex-start; margin-bottom: 15px;">
-            <button class="btn" onclick="showHome()">[ BACK_TO_TERMINAL ]</button>
-        </div>
-        <div class="box full">
-            <h2>>Achievements</h2>
-            <div class="work-grid">
-                <div class="work-item">
-                    <img src="https://i.ibb.co/QvfKSHgK/Screenshot-2025-12-31-225333.png" alt="Resume" class="work-img" style="aspect-ratio: 16/9;">
-                    <p style="font-size: 0.6rem; margin-bottom: 15px;">Here is my resume. I use it for esports and hope to grow it. I hope esports help me become more known.</p>
-                    <a href="https://docs.google.com/document/d/14T5BN-rHwo5DeOaK8Nh5VDipeazraI6CPps3qZAHnuo/edit?usp=sharing" target="_blank" class="btn">[ ACCESS_RESUME ]</a>
-                </div>
-                <div class="work-item">
-                    <img src="https://i.ibb.co/chfpDgMP/Screenshot-2025-12-31-224811.png" alt="KeyzzILLA" class="work-img" style="aspect-ratio: 16/9;">
-                    <p style="font-size: 0.6rem; margin-bottom: 15px;">Here is my best friend and I. Keyzz and I have been friends since the start of the year. We have worked and played a lot together, go check out his website.</p>
-                    <a href="https://keyzzilla.com/" target="_blank" class="btn">[ ACCESS_KEYZZILLA ]</a>
-                </div>
-            </div>
-        </div>
-        <footer>[ v2.0 // CORVETTE Achievements ]</footer>
-    </div>
-
-    <div id="besties-page">
-        <div style="width: 100%; display: flex; justify-content: flex-start; margin-bottom: 15px;">
-            <button class="btn" onclick="showHome()">[ BACK_TO_TERMINAL ]</button>
-        </div>
-        <div class="box full">
-            <h2>>_My Besties</h2>
-            <div class="work-grid">
-                <div class="work-item">
-                    <div class="bestie-name">[ Keyzz ]</div>
-                    <img src="https://i.ibb.co/zVXTqRh0/keyzz-image.png" alt="Keyzz" class="work-img">
-                    <p style="font-size: 0.6rem; margin-bottom: 15px;">Keyzz grinds with me. Wherever I go, he is there. Even though I make the calls as the IGL, he does his own thing and dominates.</p>
-                    <a href="https://keyzzilla.com/" target="_blank" class="btn">[ ACCESS_SITE ]</a>
-                </div>
-
-                <div class="work-item">
-                    <div class="bestie-name">[ Ryan ]</div>
-                    <img src="https://i.ibb.co/hFVpVtXq/ryan-pfp.png" alt="Ryan" class="work-img">
-                    <p style="font-size: 0.6rem; margin-bottom: 15px;">He is a psycho at coding. He is there to help me when needed. Sometimes he and Wyind can troll me forever.</p>
-                    <a href="https://ryanpc.org/" target="_blank" class="btn">[ ACCESS_SITE ]</a>
-                </div>
-
-                <div class="work-item">
-                    <div class="bestie-name">[ Wyind ]</div>
-                    <img src="https://i.ibb.co/d0VKDjT0/wyind-pfp.png" alt="Wyind" class="work-img">
-                    <p style="font-size: 0.6rem; margin-bottom: 15px;">Although he uses Linux, TAKE HIM SERIOUS. Wyind helps me out like Ryan. He is a little older but still plays Fortnite with me and the boys.</p>
-                    <a href="https://www.wyind.dev/" target="_blank" class="btn">[ ACCESS_SITE ]</a>
-                </div>
-            </div>
-        </div>
-        <footer>[ v2.0 // CIRCLE_OF_TRUST ]</footer>
     </div>
 
 <script>
-    // Updated with real working links
+    // These are direct links to MP3 files. They MUST be direct links to work.
     const playlist = [
         { name: "4X4", url: "https://files.catbox.moe/r4c20q.mp3" },
         { name: "SHAKIRA!", url: "https://files.catbox.moe/p0xovg.mp3" },
@@ -391,37 +250,21 @@
     ];
 
     let currentTrackIndex = 0;
-    let audio = new Audio(playlist[currentTrackIndex].url);
+    let audio = new Audio();
     audio.volume = 0.15;
+    audio.src = playlist[currentTrackIndex].url;
 
     function initTerminal() {
+        // This button click allows the audio to start (Browser Autoplay Fix)
         document.getElementById('enter-overlay').style.display = 'none';
         document.getElementById('main-content').style.display = 'block';
         updateDisplay();
-    }
-
-    function hideAll() {
-        document.getElementById('main-content').style.display = 'none';
-        document.getElementById('work-page').style.display = 'none';
-        document.getElementById('besties-page').style.display = 'none';
-    }
-
-    function showWork() {
-        hideAll();
-        document.getElementById('work-page').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
-    function showBesties() {
-        hideAll();
-        document.getElementById('besties-page').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
-    function showHome() {
-        hideAll();
-        document.getElementById('main-content').style.display = 'block';
-        window.scrollTo(0,0);
+        
+        // Try to start music immediately upon entry
+        audio.play().catch(e => {
+            console.log("Autoplay blocked, user must hit Play manually.");
+        });
+        document.getElementById('play-btn').innerText = audio.paused ? "PLAY" : "STOP";
     }
 
     function updateDisplay() {
@@ -432,7 +275,7 @@
     function togglePlay() {
         const btn = document.getElementById('play-btn');
         if (audio.paused) {
-            audio.play().catch(e => console.error("Playback failed:", e));
+            audio.play();
             btn.innerText = "STOP";
         } else {
             audio.pause();
@@ -452,25 +295,20 @@
 
     function changeTrack() {
         const wasPlaying = !audio.paused;
-        audio.pause();
         audio.src = playlist[currentTrackIndex].url;
         audio.load();
         updateDisplay();
-        
         if (wasPlaying) {
             audio.play();
             document.getElementById('play-btn').innerText = "STOP";
-        } else {
-            document.getElementById('play-btn').innerText = "PLAY";
         }
     }
 
     audio.addEventListener('ended', nextTrack);
 
     document.getElementById('volume-slider').addEventListener('input', (e) => {
-        const val = e.target.value;
-        audio.volume = val;
-        document.getElementById('vol-pct').innerText = Math.round(val * 100) + "%";
+        audio.volume = e.target.value;
+        document.getElementById('vol-pct').innerText = Math.round(e.target.value * 100) + "%";
     });
 
     audio.addEventListener('timeupdate', () => {

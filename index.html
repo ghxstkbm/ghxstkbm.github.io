@@ -268,8 +268,8 @@
                     <a href="https://discord.gg/73527jvJgv"><i class="fa-brands fa-discord"></i></a>
                     <a href="https://x.com/corvxwtw"><i class="fa-brands fa-x-twitter"></i></a>
                     <a href="https://youtube.com/@corvxwtw"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="https:/twitch.tv/corvxwtw"><i class="fa-brands fa-twitch"></i></a>
-                    <a href="https:/tiktok.com/@c0rvx"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://twitch.tv/corvxwtw"><i class="fa-brands fa-twitch"></i></a>
+                    <a href="https://tiktok.com/@c0rvx"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
                 <p style="font-size: 0.7rem; color: var(--fg); margin-top: 12px;">
                     STATUS: <span style="color: #ffffff; text-shadow: 0 0 5px rgba(255,255,255,0.5);">ACTIVE</span> 
@@ -382,7 +382,6 @@
     </div>
 
 <script>
-    
     const playlist = [
         { name: "4X4", url: "https://files.catbox.moe/r4c20q.mp3" },
         { name: "SHAKIRA!", url: "https://files.catbox.moe/p0xovg.mp3" },
@@ -393,32 +392,27 @@
     let currentTrackIndex = 0;
     const audio = new Audio();
     audio.volume = 0.15;
-    audio.src = playlist[currentTrackIndex].url;
 
-    
     function initTerminal() {
         document.getElementById('enter-overlay').style.display = 'none';
         document.getElementById('main-content').style.display = 'block';
+        
+        // Start track
+        audio.src = playlist[currentTrackIndex].url;
+        audio.load();
         updateDisplay();
         
-       
-        playAudio();
-    }
-
-   
-    function playAudio() {
+        // Must be called directly here to bypass browser blocks
         audio.play().then(() => {
             document.getElementById('play-btn').innerText = "STOP";
-        }).catch(error => {
-            console.warn("Playback blocked or failed:", error);
-            document.getElementById('play-btn').innerText = "PLAY";
-        });
+        }).catch(e => console.error("Auto-play blocked:", e));
     }
 
     function togglePlay() {
         const btn = document.getElementById('play-btn');
         if (audio.paused) {
-            playAudio();
+            audio.play();
+            btn.innerText = "STOP";
         } else {
             audio.pause();
             btn.innerText = "PLAY";
@@ -435,13 +429,13 @@
         changeTrack();
     }
 
-    
     function changeTrack() {
         audio.pause();
         audio.src = playlist[currentTrackIndex].url;
-        audio.load(); 
+        audio.load();
         updateDisplay();
-        playAudio();
+        audio.play();
+        document.getElementById('play-btn').innerText = "STOP";
     }
 
     function updateDisplay() {
@@ -449,18 +443,6 @@
         trackText.innerText = `SYSTEM_AUDIO: ${playlist[currentTrackIndex].name}.MP3 — BITRATE: 320KBPS — `;
     }
 
-
-    function hideAll() {
-        document.getElementById('main-content').style.display = 'none';
-        document.getElementById('work-page').style.display = 'none';
-        document.getElementById('besties-page').style.display = 'none';
-    }
-
-    function showWork() { hideAll(); document.getElementById('work-page').style.display = 'block'; window.scrollTo(0,0); }
-    function showBesties() { hideAll(); document.getElementById('besties-page').style.display = 'block'; window.scrollTo(0,0); }
-    function showHome() { hideAll(); document.getElementById('main-content').style.display = 'block'; window.scrollTo(0,0); }
-
-    
     audio.addEventListener('ended', nextTrack);
 
     audio.addEventListener('timeupdate', () => {
@@ -474,6 +456,17 @@
         audio.volume = val;
         document.getElementById('vol-pct').innerText = Math.round(val * 100) + "%";
     });
+
+    // Navigation
+    function hideAll() {
+        document.getElementById('main-content').style.display = 'none';
+        document.getElementById('work-page').style.display = 'none';
+        document.getElementById('besties-page').style.display = 'none';
+    }
+
+    function showWork() { hideAll(); document.getElementById('work-page').style.display = 'block'; window.scrollTo(0,0); }
+    function showBesties() { hideAll(); document.getElementById('besties-page').style.display = 'block'; window.scrollTo(0,0); }
+    function showHome() { hideAll(); document.getElementById('main-content').style.display = 'block'; window.scrollTo(0,0); }
 </script>
 </body>
 </html>

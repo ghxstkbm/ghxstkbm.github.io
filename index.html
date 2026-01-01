@@ -265,7 +265,7 @@
                     "2026.is.my.year."
                 </p>
                 <div class="social-links" style="margin-top: 10px;">
-                    <a href="https://discord.gg/73527jvJgv"><i class="fa-brands fa-discord"></i></a>
+                     <a href="https://discord.gg/73527jvJgv"><i class="fa-brands fa-discord"></i></a>
                     <a href="https://x.com/corvxwtw"><i class="fa-brands fa-x-twitter"></i></a>
                     <a href="https://youtube.com/@corvxwtw"><i class="fa-brands fa-youtube"></i></a>
                     <a href="https:/twitch.tv/corvxwtw"><i class="fa-brands fa-twitch"></i></a>
@@ -382,11 +382,12 @@
     </div>
 
 <script>
+    // Updated with real working links
     const playlist = [
-        { name: "4X4", url: "assets/4x4.mp3" },
-        { name: "SHAKIRA!", url: "assets/shakira.mp3" },
-        { name: "TOOK HER TO THE O", url: "assets/thtto.mp3" },
-        { name: "SS", url: "assets/ss.mp3" }
+        { name: "4X4", url: "https://files.catbox.moe/r4c20q.mp3" },
+        { name: "SHAKIRA!", url: "https://files.catbox.moe/p0xovg.mp3" },
+        { name: "TOOK HER TO THE O", url: "https://files.catbox.moe/0v2d7n.mp3" },
+        { name: "SS", url: "https://files.catbox.moe/i6m3u4.mp3" }
     ];
 
     let currentTrackIndex = 0;
@@ -425,13 +426,13 @@
 
     function updateDisplay() {
         const trackText = document.getElementById('track-display');
-        trackText.innerText = `SYSTEM_AUDIO: ${playlist[currentTrackIndex].name}.MP3 — `;
+        trackText.innerText = `SYSTEM_AUDIO: ${playlist[currentTrackIndex].name}.MP3 — BITRATE: 320KBPS — `;
     }
 
     function togglePlay() {
         const btn = document.getElementById('play-btn');
         if (audio.paused) {
-            audio.play();
+            audio.play().catch(e => console.error("Playback failed:", e));
             btn.innerText = "STOP";
         } else {
             audio.pause();
@@ -453,8 +454,15 @@
         const wasPlaying = !audio.paused;
         audio.pause();
         audio.src = playlist[currentTrackIndex].url;
+        audio.load();
         updateDisplay();
-        if (wasPlaying) audio.play();
+        
+        if (wasPlaying) {
+            audio.play();
+            document.getElementById('play-btn').innerText = "STOP";
+        } else {
+            document.getElementById('play-btn').innerText = "PLAY";
+        }
     }
 
     audio.addEventListener('ended', nextTrack);

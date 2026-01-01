@@ -268,8 +268,8 @@
                     <a href="https://discord.gg/73527jvJgv"><i class="fa-brands fa-discord"></i></a>
                     <a href="https://x.com/corvxwtw"><i class="fa-brands fa-x-twitter"></i></a>
                     <a href="https://youtube.com/@corvxwtw"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="https://twitch.tv/corvxwtw"><i class="fa-brands fa-twitch"></i></a>
-                    <a href="https://tiktok.com/@c0rvx"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https:/twitch.tv/corvxwtw"><i class="fa-brands fa-twitch"></i></a>
+                    <a href="https:/tiktok.com/@c0rvx"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
                 <p style="font-size: 0.7rem; color: var(--fg); margin-top: 12px;">
                     STATUS: <span style="color: #ffffff; text-shadow: 0 0 5px rgba(255,255,255,0.5);">ACTIVE</span> 
@@ -279,7 +279,7 @@
 
         <div class="music-player">
             <div class="marquee-container">
-                <div class="marquee-text" id="track-display">SYSTEM_AUDIO: 4X4.MP3 — BITRATE: 320KBPS — </div>
+                <div class="marquee-text" id="track-display">SYSTEM_AUDIO: OFFLINE — </div>
             </div>
             <div class="controls-row">
                 <div style="display: flex; gap: 8px;">
@@ -292,7 +292,7 @@
                     <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.15">
                     <span id="vol-pct" style="min-width: 35px; font-size: 0.7rem; text-align: right;">15%</span>
                 </div>
-                <div style="font-size: 0.7rem; font-family: 'JetBrains Mono', monospace;" id="time-display">00:00</div>
+                <div style="font-size: 0.7rem; font-family: 'JetBrains Mono', monospace;" id="time-display">0:00</div>
             </div>
         </div>
 
@@ -382,7 +382,7 @@
     </div>
 
 <script>
-    // These are direct links to the songs hosted online.
+    
     const playlist = [
         { name: "4X4", url: "https://files.catbox.moe/r4c20q.mp3" },
         { name: "SHAKIRA!", url: "https://files.catbox.moe/p0xovg.mp3" },
@@ -391,54 +391,34 @@
     ];
 
     let currentTrackIndex = 0;
-    let audio = new Audio(playlist[currentTrackIndex].url);
+    const audio = new Audio();
     audio.volume = 0.15;
+    audio.src = playlist[currentTrackIndex].url;
 
+    
     function initTerminal() {
         document.getElementById('enter-overlay').style.display = 'none';
         document.getElementById('main-content').style.display = 'block';
         updateDisplay();
-        // This is necessary because of browser autoplay security rules
-        audio.play().catch(() => {
-            console.log("Autoplay blocked. Press PLAY manually.");
+        
+       
+        playAudio();
+    }
+
+   
+    function playAudio() {
+        audio.play().then(() => {
+            document.getElementById('play-btn').innerText = "STOP";
+        }).catch(error => {
+            console.warn("Playback blocked or failed:", error);
+            document.getElementById('play-btn').innerText = "PLAY";
         });
-        document.getElementById('play-btn').innerText = "STOP";
-    }
-
-    function hideAll() {
-        document.getElementById('main-content').style.display = 'none';
-        document.getElementById('work-page').style.display = 'none';
-        document.getElementById('besties-page').style.display = 'none';
-    }
-
-    function showWork() {
-        hideAll();
-        document.getElementById('work-page').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
-    function showBesties() {
-        hideAll();
-        document.getElementById('besties-page').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
-    function showHome() {
-        hideAll();
-        document.getElementById('main-content').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
-    function updateDisplay() {
-        const trackText = document.getElementById('track-display');
-        trackText.innerText = `SYSTEM_AUDIO: ${playlist[currentTrackIndex].name}.MP3 — BITRATE: 320KBPS — `;
     }
 
     function togglePlay() {
         const btn = document.getElementById('play-btn');
         if (audio.paused) {
-            audio.play();
-            btn.innerText = "STOP";
+            playAudio();
         } else {
             audio.pause();
             btn.innerText = "PLAY";
@@ -455,33 +435,45 @@
         changeTrack();
     }
 
+    
     function changeTrack() {
-        const wasPlaying = !audio.paused;
         audio.pause();
         audio.src = playlist[currentTrackIndex].url;
+        audio.load(); 
         updateDisplay();
-        if (wasPlaying) {
-            audio.play();
-            document.getElementById('play-btn').innerText = "STOP";
-        } else {
-            document.getElementById('play-btn').innerText = "PLAY";
-        }
+        playAudio();
     }
 
-    audio.addEventListener('ended', nextTrack);
+    function updateDisplay() {
+        const trackText = document.getElementById('track-display');
+        trackText.innerText = `SYSTEM_AUDIO: ${playlist[currentTrackIndex].name}.MP3 — BITRATE: 320KBPS — `;
+    }
 
-    document.getElementById('volume-slider').addEventListener('input', (e) => {
-        const val = e.target.value;
-        audio.volume = val;
-        document.getElementById('vol-pct').innerText = Math.round(val * 100) + "%";
-    });
+
+    function hideAll() {
+        document.getElementById('main-content').style.display = 'none';
+        document.getElementById('work-page').style.display = 'none';
+        document.getElementById('besties-page').style.display = 'none';
+    }
+
+    function showWork() { hideAll(); document.getElementById('work-page').style.display = 'block'; window.scrollTo(0,0); }
+    function showBesties() { hideAll(); document.getElementById('besties-page').style.display = 'block'; window.scrollTo(0,0); }
+    function showHome() { hideAll(); document.getElementById('main-content').style.display = 'block'; window.scrollTo(0,0); }
+
+    
+    audio.addEventListener('ended', nextTrack);
 
     audio.addEventListener('timeupdate', () => {
         const mins = Math.floor(audio.currentTime / 60);
         const secs = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
         document.getElementById('time-display').innerText = `${mins}:${secs}`;
     });
+
+    document.getElementById('volume-slider').addEventListener('input', (e) => {
+        const val = e.target.value;
+        audio.volume = val;
+        document.getElementById('vol-pct').innerText = Math.round(val * 100) + "%";
+    });
 </script>
 </body>
 </html>
-

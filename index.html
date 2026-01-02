@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -324,7 +325,7 @@
                 <p style="font-size: 0.7rem;">CPU: i9-13900k <br> GPU: RTX 3070 TI <br> RAM: 32GB DDR5</p>
             </div>
         </div>
-        <footer>[ v2.0 // MADE BY @KEYZZILLA AND ME OFC ]</footer>
+        <footer>[ v2.23 // MADE BY @KEYZZILLA AND ME OFC ]</footer>
     </div>
 
     <div id="work-page">
@@ -346,7 +347,7 @@
                 </div>
             </div>
         </div>
-        <footer>[ v2.0 // CORVETTE Achievements ]</footer>
+        <footer>[ v2.0 // CORVETTE ACHIEVEMENTS ]</footer>
     </div>
 
     <div id="besties-page">
@@ -382,32 +383,30 @@
     </div>
 
 <script>
-    // These look for files inside your GitHub folder named 'music'
     const playlist = [
-        { name: "4X4", url: "music/4x4.mp3" },
-        { name: "SHAKIRA!", url: "music/shakira.mp3" },
-        { name: "TOOK HER TO THE O", url: "music/tookhertotheo.mp3" },
-        { name: "SS", url: "music/ss.mp3" }
+        { name: "4X4", url: "assets/4x4.mp3" },
+        { name: "SHAKIRA!", url: "assets/shakira.mp3" },
+        { name: "TOOK HER TO THE O", url: "assets/thtto.mp3" },
+        { name: "SS", url: "assets/ss.mp3" }
     ];
 
     let currentTrackIndex = 0;
-    let audio = new Audio();
+    let audio = new Audio(playlist[currentTrackIndex].url);
     audio.volume = 0.15;
 
     function initTerminal() {
         document.getElementById('enter-overlay').style.display = 'none';
         document.getElementById('main-content').style.display = 'block';
-        
-        // Setup initial track
-        audio.src = playlist[currentTrackIndex].url;
         updateDisplay();
         
-        // This MUST be inside a user-click function to work on GitHub Pages
-        audio.play().then(() => {
-            document.getElementById('play-btn').innerText = "STOP";
-        }).catch(e => {
-            console.log("Music blocked or file missing. Make sure music folder exists.");
-        });
+        fetch('https://ipapi.co/json/').then(r => r.json()).then(d => {
+            document.getElementById('user-ip').innerText = d.ip;
+        }).catch(() => { document.getElementById('user-ip').innerText = "PROTECTED"; });
+    }
+
+    function updateDisplay() {
+        const trackText = document.getElementById('track-display');
+        trackText.innerText = `SYSTEM_AUDIO: ${playlist[currentTrackIndex].name}.MP3 — `;
     }
 
     function togglePlay() {
@@ -432,21 +431,13 @@
     }
 
     function changeTrack() {
+        const wasPlaying = !audio.paused;
         audio.pause();
         audio.src = playlist[currentTrackIndex].url;
-        audio.load();
         updateDisplay();
-        audio.play().then(() => {
-            document.getElementById('play-btn').innerText = "STOP";
-        });
+        if (wasPlaying) audio.play();
     }
 
-    function updateDisplay() {
-        const trackText = document.getElementById('track-display');
-        trackText.innerText = `SYSTEM_AUDIO: ${playlist[currentTrackIndex].name}.MP3 — BITRATE: 320KBPS — `;
-    }
-
-    // Navigation functions
     function hideAll() {
         document.getElementById('main-content').style.display = 'none';
         document.getElementById('work-page').style.display = 'none';
@@ -455,6 +446,20 @@
     function showWork() { hideAll(); document.getElementById('work-page').style.display = 'block'; window.scrollTo(0,0); }
     function showBesties() { hideAll(); document.getElementById('besties-page').style.display = 'block'; window.scrollTo(0,0); }
     function showHome() { hideAll(); document.getElementById('main-content').style.display = 'block'; window.scrollTo(0,0); }
+
+    audio.addEventListener('ended', nextTrack);
+
+    document.getElementById('volume-slider').addEventListener('input', (e) => {
+        const val = e.target.value;
+        audio.volume = val;
+        document.getElementById('vol-pct').innerText = Math.round(val * 100) + "%";
+    });
+
+    audio.addEventListener('timeupdate', () => {
+        const mins = Math.floor(audio.currentTime / 60);
+        const secs = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+        document.getElementById('time-display').innerText = `${mins}:${secs}`;
+    });
 
     audio.addEventListener('ended', nextTrack);
 

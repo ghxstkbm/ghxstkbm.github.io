@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CORVX // HYPER-VORTEX</title>
+    <title>CORVX</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono&display=swap"
         rel="stylesheet">
@@ -20,6 +20,7 @@
     </div>
 
     <div class="vortex-bg"></div>
+    <div id="stars"></div>
 
     <header>
         <div class="brand-box">
@@ -27,15 +28,15 @@
             <h1>CORVX</h1>
         </div>
         <nav>
-            <button class="nav-link active" onclick="nav('home', this)">HUB</button>
-            <button class="nav-link" onclick="nav('media', this)">MEDIA</button>
-            <button class="nav-link" onclick="nav('gear', this)">GEAR</button>
-            <button class="nav-link" onclick="nav('circle', this)">CIRCLE</button>
+            <button class="nav-link active" onclick="nav('home', this)">HOME</button>
+            <button class="nav-link" onclick="nav('aboutme', this)">ABOUT ME</button>
+            <button class="nav-link" onclick="nav('updates', this)">UPDATES</button>
+            <button class="nav-link" onclick="nav('leaks', this)">LEAKS</button>
+            <button class="nav-link" onclick="nav('setup', this)">SETUP</button>
+            <button class="nav-link" onclick="nav('friends', this)">FRIENDS</button>
         </nav>
         <div
             style="width: 150px; text-align: right; display: flex; justify-content: flex-end; gap: 15px; align-items: center;">
-            <i class="fa-solid fa-gear settings-toggle" onclick="toggleSettingsPanel()"
-                style="opacity: 0.6; cursor: pointer; transition: all 0.3s; font-size: 1.2rem;"></i>
             <i class="fa-solid fa-moon theme-toggle" onclick="toggleTheme()"
                 style="opacity: 0.6; cursor: pointer; transition: all 0.3s; font-size: 1.2rem;"></i>
             <i class="fa-solid fa-square-rss" style="opacity: 0.3;"></i>
@@ -76,35 +77,14 @@
                         <span style="opacity: 0.4; font-size: 0.7rem;">STATUS</span>
                         <span style="font-weight: 700; font-size: 0.7rem; color: #00ff88;">[ ONLINE ]</span>
                     </div>
-                    <div
-                        style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(128,128,128,0.1); padding-bottom: 10px;">
-                        <span style="opacity: 0.4; font-size: 0.7rem;">F/A_STATUS</span>
-                        <span style="font-weight: 700; font-size: 0.7rem;">ACTIVE_COMP</span>
-                    </div>
                     <a href="https://fortnitetracker.com/profile/all/washed%20fs%20%e3%82%b7" target="_blank"
                         class="tracker-btn"
                         style="margin-top: 15px; text-align: center; padding: 12px; font-weight: 900; text-decoration: none; font-size: 0.6rem; letter-spacing: 2px;">SYNC_TRACKER_DATA</a>
                 </div>
             </div>
-
-            <div class="glass-card col-12">
-                <span class="card-tag">// COMPETITIVE_RESUME</span>
-                <div style="display: flex; gap: 40px; align-items: center;">
-                    <img src="assets/Screenshot-2025-12-31-225333.png"
-                        style="width: 250px; border: 1px solid var(--border-glow);">
-                    <div>
-                        <h3 style="font-family: 'Syncopate'; margin-bottom: 15px;">ACHIEVEMENTS_LOG</h3>
-                        <p style="opacity: 0.5; margin-bottom: 25px;">Verified competitive history and skill analytics
-                            for esports organizations.</p>
-                        <a href="https://docs.google.com/document/d/14T5BN-rHwo5DeOaK8Nh5VDipeazraI6CPps3qZAHnuo/edit?usp=sharing"
-                            target="_blank"
-                            style="border: 1px solid var(--accent); color: var(--accent); padding: 12px 30px; text-decoration: none; font-size: 0.7rem; font-weight: 700;">DOWNLOAD_REPORTS</a>
-                    </div>
-                </div>
-            </div>
         </section>
 
-        <section id="view-media" class="view-section">
+        <section id="view-updates" class="view-section">
             <div class="glass-card col-6">
                 <span class="card-tag">BROADCAST // YOUTUBE</span>
                 <div class="embed-wrapper">
@@ -127,13 +107,23 @@
             </div>
         </section>
 
-        <section id="view-gear" class="view-section">
+        <section id="view-leaks" class="view-section">
+            <div class="glass-card col-12">
+                <span class="card-tag">// LEAKS</span>
+                <div style="text-align: center; padding: 50px;">
+                    <h2 style="font-family: 'Syncopate'; font-size: 2rem; margin-bottom: 20px;">LEAKS COMING SOON</h2>
+                    <p style="opacity: 0.6; font-size: 1rem;">From me</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-setup" class="view-section">
             <div class="glass-card col-4 asset-box">
                 <span class="card-tag">HARDWARE_01</span>
                 <img src="assets/images-1.jpg">
                 <div style="margin-top: 20px;">
                     <p style="font-weight: 700; letter-spacing: 1px;">SUPERLIGHT 2</p>
-                    <p style="opacity: 0.4; font-size: 0.7rem;">1600 DPI // 1.5% SENS</p>
+                    <p style="opacity: 0.4; font-size: 0.7rem;">800 DPI </p>
                 </div>
             </div>
             <div class="glass-card col-4 asset-box">
@@ -149,12 +139,12 @@
                 <img src="assets/Screenshot-2026-02-19-173016.png">
                 <div style="margin-top: 20px;">
                     <p style="font-weight: 700; letter-spacing: 1px;">TARGETING: 55.55</p>
-                    <p style="opacity: 0.4; font-size: 0.7rem;">X: 3% // Y: 3%</p>
+                    <p style="opacity: 0.4; font-size: 0.7rem;">X: 6.4% // Y: 6.4%</p>
                 </div>
             </div>
         </section>
 
-        <section id="view-circle" class="view-section">
+        <section id="view-friends" class="view-section">
             <div class="glass-card col-12">
                 <span class="card-tag">fg</span>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
@@ -212,10 +202,62 @@
                 </div>
             </div>
         </section>
+
+        <section id="view-aboutme" class="view-section">
+            <div class="glass-card col-12">
+                <span class="card-tag">// COMPETITIVE_RESUME</span>
+                <div style="display: flex; gap: 40px; align-items: center;">
+                    <img src="assets/Screenshot-2025-12-31-225333.png"
+                        style="width: 250px; border: 1px solid var(--border-glow);">
+                    <div>
+                        <h3 style="font-family: 'Syncopate'; margin-bottom: 15px;">ACHIEVEMENTS_LOG</h3>
+                        <p style="opacity: 0.5; margin-bottom: 25px;">Verified competitive history and skill analytics
+                            for esports organizations.</p>
+                        <a href="https://docs.google.com/document/d/14T5BN-rHwo5DeOaK8Nh5VDipeazraI6CPps3qZAHnuo/edit?usp=sharing"
+                            target="_blank"
+                            style="border: 1px solid var(--accent); color: var(--accent); padding: 12px 30px; text-decoration: none; font-size: 0.7rem; font-weight: 700;">DOWNLOAD_REPORTS</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card col-12">
+                <span class="card-tag">// SKILLS</span>
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>VFX Skills</span>
+                            <span>45%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 45%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Gaming</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Social Life</span>
+                            <span>50%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <div class="player-pill">
             <div class="track-meta">
                 <span style="opacity: 0.1;">PLAYING:</span>
-                <span id="track-name">STANDBY</span>
+                <span id="track-name">NOTHING</span>
             </div>
 
             <div class="audio-btns">
@@ -228,65 +270,6 @@
                 <span id="time-val" style="font-family: 'JetBrains Mono'; font-size: 0.7rem; opacity: 0.4;">00:00</span>
                 <input type="range" id="vol-slider" min="0" max="1" step="0.01" value="0.15"
                     style="width: 80px; accent-color: var(--accent);">
-            </div>
-        </div>
-
-        <div id="settingsOverlay" class="settings-overlay" onclick="closeSettings(event)">
-            <div class="settings-panel">
-                <h3
-                    style="font-family: 'Syncopate'; margin-bottom: 25px; border-bottom: 1px solid var(--border-glow); padding-bottom: 15px;">
-                    SYSTEM_CONFIG</h3>
-
-                <div class="setting-group">
-                    <label>LIGHT_THEME</label>
-                    <label class="switch">
-                        <input type="checkbox" id="themeSwitch" onchange="updateSettings()">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-
-                <div class="setting-group">
-                    <label>CRT_ANIMATION</label>
-                    <label class="switch">
-                        <input type="checkbox" id="animationSwitch" onchange="updateSettings()" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
-
-                <div class="setting-group">
-                    <label>BG_EFFECTS</label>
-                    <label class="switch">
-                        <input type="checkbox" id="bgSwitch" onchange="updateSettings()" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
-
-                <div class="setting-group">
-                    <label>BG_DESIGN</label>
-                    <select id="bgDesign" onchange="updateSettings()">
-                        <option value="vortex">VORTEX</option>
-                        <option value="grid">GRID_ONLY</option>
-                        <option value="solid">SOLID</option>
-                    </select>
-                </div>
-
-                <div class="setting-group">
-                    <label>PRIMARY_COLOR</label>
-                    <input type="color" id="primaryColor" value="#ffffff" onchange="updateSettings()">
-                </div>
-
-                <div class="setting-group">
-                    <label>SECONDARY_COLOR</label>
-                    <input type="color" id="secondaryColor" value="#000000" onchange="updateSettings()">
-                </div>
-
-                <button onclick="toggleSettingsPanel()"
-                    style="width: 100%; margin-top: 20px; padding: 10px; background: transparent; border: 1px solid var(--accent); color: var(--text-primary); cursor: pointer; font-weight: 700;">CLOSE_CONFIG</button>
-                <div
-                    style="text-align: center; margin-top: 15px; font-size: 0.6rem; opacity: 0.5; font-family: 'JetBrains Mono', monospace;">
-                    made by <a href="https://keyzzilla.com"
-                        style="color: inherit; text-decoration: none;">@keyzzilla</a>
-                </div>
             </div>
         </div>
 
